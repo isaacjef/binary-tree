@@ -29,13 +29,13 @@ public class BinaryTreeTest {
       Node<Integer> rootNode = tree.createTree(new Integer[]{5, 0, 10, -5, 15, -10, 20});
 
       // metodo getNode
-      assertEquals(Integer.valueOf(5), rootNode.getValue());
-      assertEquals(Integer.valueOf(0), rootNode.getLeft().getValue());
-      assertEquals(Integer.valueOf(10), rootNode.getRight().getValue());
-      assertEquals(Integer.valueOf(-5), rootNode.getLeft().getLeft().getValue());
-      assertEquals(Integer.valueOf(15), rootNode.getRight().getRight().getValue());
-      assertEquals(Integer.valueOf(-10), rootNode.getLeft().getLeft().getLeft().getValue());
-      assertEquals(Integer.valueOf(20), rootNode.getRight().getRight().getRight().getValue());
+      assertEquals(Integer.valueOf(5), tree.getByElement(rootNode, 5).getValue());
+      assertEquals(Integer.valueOf(0), tree.getByElement(rootNode, 0).getValue());
+      assertEquals(Integer.valueOf(10), tree.getByElement(rootNode, 10).getValue());
+      assertEquals(Integer.valueOf(-5), tree.getByElement(rootNode, -5).getValue());
+      assertEquals(Integer.valueOf(15), tree.getByElement(rootNode, 15).getValue());
+      assertEquals(Integer.valueOf(-10), tree.getByElement(rootNode, -10).getValue());
+      assertEquals(Integer.valueOf(20), tree.getByElement(rootNode, 20).getValue());
     }
 
     // excluir
@@ -59,6 +59,10 @@ public class BinaryTreeTest {
     }
   }
 
+  /**
+   * Todos os métodos que retornam Node<T>, retornam null caso o 
+   * elemento não exista na árvore, para evitar NullPointerException.
+   */
   @Nested
   public class GetElements { 
   

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ifgoiano.BinaryTreeTest" time="0.073" tests="0" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ifgoiano.BinaryTreeTest$GetElements" time="0.007" tests="4" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -60,4 +60,11 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
+  <testcase name="elementAlreadyExists" classname="ifgoiano.BinaryTreeTest" time="0.022">
+    <system-err><![CDATA[Element already exists in the tree: 5
+]]></system-err>
+  </testcase>
+  <testcase name="getRootFather" classname="ifgoiano.BinaryTreeTest$GetElements" time="0.001"/>
+  <testcase name="onlyRight" classname="ifgoiano.BinaryTreeTest$GetElements" time="0.001"/>
+  <testcase name="getFather" classname="ifgoiano.BinaryTreeTest$GetElements" time="0.0"/>
 </testsuite>

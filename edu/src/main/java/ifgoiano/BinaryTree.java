@@ -91,6 +91,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
     }
   }
 
+  @Override
   public boolean remove(Node<T> rootNode, T nodeElement) {
     // TODO Auto-generated method stub
     return false;
@@ -121,14 +122,25 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
     return father;
   }
 
+  @Override
   public Node<T> getBrother(Node<T> rootNode, T nodeElement) {
     // TODO Auto-generated method stub
     return null;
   }
 
+  @Override
   public Node<T> getByElement(Node<T> rootNode, T element) {
-    // TODO Auto-generated method stub
-    return null;
+    if (rootNode == null) {
+      return null;
+    }
+
+    if (rootNode.getValue().equals(element)) {
+      return rootNode;
+    } else if (rootNode.getValue().compareTo(element) > 0) {
+      return getByElement(rootNode.getLeft(), element);
+    } else {
+      return getByElement(rootNode.getRight(), element);
+    }
   }
 
   @Override
