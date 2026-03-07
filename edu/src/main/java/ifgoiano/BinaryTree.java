@@ -11,7 +11,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
    * + Para utilizá-lo em outros métodos
    */
   Node<T> root = new Node<>();
-  StringBuilder sb = new StringBuilder();
+  //StringBuilder sb = new StringBuilder();
 
   @Override
   public Node<T> createTree(T element) {
@@ -145,17 +145,38 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public Integer calculateTreeDepth(Node<T> rootNode) {
-    if (rootNode == null) {
+    if (rootNode == null)
       return 0;
-    } else {
-      // int leftDepth = calculateTreeDepth(rootNode.getLeft());
-      // System.out.println("Left depth of node " + rootNode.getValue() + ": " + leftDepth);
-      int rightDepth = calculateTreeDepth(rootNode.getRight());
-      System.out.println("Right depth of node " + rootNode.getRight() + ": " + rightDepth);
-      // return Math.max(leftDepth, rightDepth) + 1;
-      return rightDepth + 1;
+
+    int left = 0;
+    int right = 0;
+
+    if (rootNode.getRight() == null && rootNode.getLeft() == null) {
+      return 0;
     }
-    //return null;
+
+    if (rootNode.getLeft() == null) {
+      right = 1 + calculateTreeDepth(rootNode.getRight());
+      return right;
+    }
+
+    if (rootNode.getRight() == null) {
+      left = 1 + calculateTreeDepth(rootNode.getLeft());
+      return left;
+    }
+
+    if (rootNode.getRight() != null && rootNode.getLeft() != null) {
+      left = 1 + calculateTreeDepth(rootNode.getLeft());
+      right = 1 + calculateTreeDepth(rootNode.getRight());
+
+      if (left > right) {
+        return left;
+      } else {
+        return right;
+      }
+    }
+
+    return 1;
   }
 
   public Integer calculateNodeLevel(Node<T> rootNode, T nodeElement) {
@@ -165,33 +186,41 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public String toString(Node<T> rootNode) {
+    StringBuilder sb = new StringBuilder();
+
     if (rootNode == null) {
       return "";
     } else if (rootNode.equals(root)) {
       sb.append("root:").append(rootNode.getValue()).append(" ");
     }
 
+    if (rootNode.getLeft() != null && rootNode.getRight() == null) {
+      sb.append("(left:").append(rootNode.getLeft().getValue()).append(" ");
+      sb.append(toString(rootNode.getLeft()));
+      return sb.append(")").toString();
+    }
+
     if (rootNode.getLeft() != null) {
       sb.append("(left:").append(rootNode.getLeft().getValue()).append(" ");
-      toString(rootNode.getLeft());
-      sb.append(")");
+      sb.append(toString(rootNode.getLeft()));
+      //return sb.toString();
+      //sb.append(")");
     }
    
     if (rootNode.getRight() != null && rootNode.getLeft() == null) {
       sb.append("(right:").append(rootNode.getRight().getValue()).append(" ");
-      toString(rootNode.getRight());
-      sb.append(")");
+      sb.append(toString(rootNode.getRight()));
+      sb.append(")").toString();
     }
 
-     if (rootNode.getRight() != null) {
+    if (rootNode.getRight() != null) {
       sb.append("right:").append(rootNode.getRight().getValue()).append(" ");
-      toString(rootNode.getRight());
-      sb.append(")");
+      sb.append(toString(rootNode.getRight()));
+      return sb.append(")").toString();
     }
-
+    // root:6 (left:2 right:8 )
     return sb.toString();
   }
-
 
   @Override
   public Boolean isComplete(Node<T> rootNode) {
