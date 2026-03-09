@@ -6,17 +6,22 @@ public class Main {
         Node<Integer> root = tree.createTree(10);
         // tree.insert(root, 15);
         tree.insert(root, 4);
-        tree.insert(root, 5);
+        tree.insert(root, 6);
         tree.insert(root, 3);
+        tree.insert(root, 5);
+        tree.insert(root, 7);
         tree.insert(root, 12);
         tree.insert(root, 11);
-        tree.insert(root, 13);
+        // tree.insert(root, 13);
         // tree.insert(root, 14);
         // tree.insert(root, 15);
         // root = tree.createTree(11);
         // tree.insert(root, 5);
-        System.out.println("Zephyr: " + tree.getFather(root, 10).getValue());
+        //System.out.println("Zephyr: " + tree.getFather(root, 10).getValue());
         //tree.calculateTreeDepth(root);
+        System.out.println(tree.toString(root));
+
+        System.out.println("Removing 5..." + tree.remove(root, 6));
         System.out.println(tree.toString(root));
 
         // BinaryTree<Integer> tree2 = new BinaryTree<>();
