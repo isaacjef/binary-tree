@@ -57,6 +57,20 @@ public class BinaryTreeTest {
     }
 
     @Test
+    @DisplayName("Testa a inserção de um elemento duplicado")
+    public void elementAlreadyExists() {
+      BinaryTree<Integer> tree = new BinaryTree<>();
+      Node<Integer> rootNode = tree.createTree(10);
+      tree.insert(rootNode, 5);
+      tree.insert(rootNode, 15);
+      tree.insert(rootNode, 5); // Tenta inserir um elemento duplicado
+
+      assertEquals(Integer.valueOf(10), rootNode.getValue());
+      assertEquals(Integer.valueOf(5), rootNode.getLeft().getValue());
+      assertEquals(Integer.valueOf(15), rootNode.getRight().getValue());
+    }
+
+    @Test
     @DisplayName("Inserção de elementos somente à esquerda")
     public void insertOnlyLeft() {
       BinaryTree<Integer> tree = new BinaryTree<>();
@@ -185,22 +199,87 @@ public class BinaryTreeTest {
       assertEquals(tree.toString(rootNode), "root:10 (right:15 (right:25 (left:16 (right:17 ))))");
       //tree.remove(rootNode, 25);
       tree.remove(rootNode, 16);
-      tree.remove(rootNode, 17);
-      assertEquals(tree.toString(rootNode), "root:10 (right:15 (right:25 (right:17 )))");
+      //tree.remove(rootNode, 17);
+      assertEquals(tree.toString(rootNode), "root:10 (right:15 (right:25 (left:17 )))");
     }
   }
 
-  @Test
-  @DisplayName("Testa a inserção de um elemento duplicado")
-  public void elementAlreadyExists() {
-    BinaryTree<Integer> tree = new BinaryTree<>();
-    Node<Integer> rootNode = tree.createTree(10);
-    tree.insert(rootNode, 5);
-    tree.insert(rootNode, 15);
-    tree.insert(rootNode, 5); // Tenta inserir um elemento duplicado
+  @Nested
+  public class DepthAndCompleteness {
+    @Test
+    void calculateTreeRoot() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 6};
 
-    assertEquals(Integer.valueOf(10), rootNode.getValue());
-    assertEquals(Integer.valueOf(5), rootNode.getLeft().getValue());
-    assertEquals(Integer.valueOf(15), rootNode.getRight().getValue());
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.calculateTreeDepth(rootNode), 0);
+    }
+
+    @Test
+    void calculateTreeDepthsRight() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 6, 2, 8, 1, 4, 3, 5, 9, 10, 11, 12};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.calculateTreeDepth(rootNode), 5);
+    }
+
+    @Test
+    void calculateTreeDepthsLeft() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.calculateTreeDepth(rootNode), 10);
+    }
+
+    @Test
+    void calculateTreeNull() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] {};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+      assertNull(binaryTreeOps.calculateTreeDepth(rootNode));
+    }
+
+    @Test
+    void calculateTreeDepths() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[]{15, 14, 16, 13, 17, 12, 18, 11, 19, 10, 20, 1, 2, 100, 80, 90};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+      assertEquals(binaryTreeOps.calculateTreeDepth(rootNode), 8);
+    }
+  }
+
+  @Nested
+  public class Others {
+    @Test
+    void checkNodeDegree() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 6, 2, 8, 1, 4, 3 };
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.degree(rootNode, 8), 0);
+      assertEquals(binaryTreeOps.degree(rootNode, 2), 2);
+      assertEquals(binaryTreeOps.degree(rootNode, 4), 1);
+      assertNull(binaryTreeOps.degree(rootNode, 10));
+    }
+
+    @Test
+    void calculateNodeLevel() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 6, 2, 8, 1, 4, 3 };
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.calculateNodeLevel(rootNode, 8), 1);
+      assertEquals(binaryTreeOps.calculateNodeLevel(rootNode, 4), 2);
+      assertNull(binaryTreeOps.calculateNodeLevel(rootNode, null));
+    }
   }
 }

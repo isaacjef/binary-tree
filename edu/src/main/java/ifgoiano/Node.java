@@ -6,8 +6,6 @@ public class Node<T extends Comparable<T>> {
   private Node<T> left;
   private Node<T> right;
 
-  Thread a = new Thread();
-
   public T getValue() {
     return value;
   }

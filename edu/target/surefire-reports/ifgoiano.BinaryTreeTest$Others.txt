@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
-Test set: ifgoiano.BinaryTreeTest
+Test set: ifgoiano.BinaryTreeTest$Others
 -------------------------------------------------------------------------------
-Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.088 s -- in ifgoiano.BinaryTreeTest
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.002 s -- in ifgoiano.BinaryTreeTest$Others
