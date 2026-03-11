@@ -30,12 +30,6 @@ public class BinaryTreeTest {
       Node<Integer> rootNode = tree.createTree(new Integer[]{5, 0, 10, -5, 15, -10, 20});
 
       assertEquals(tree.toString(rootNode), "root:5 (left:0 (left:-5 (left:-10 ))right:10 (right:15 (right:20 )))");
-      // assertEquals(Integer.valueOf(0), tree.getByElement(rootNode, 0).getValue());
-      // assertEquals(Integer.valueOf(10), tree.getByElement(rootNode, 10).getValue());
-      // assertEquals(Integer.valueOf(-5), tree.getByElement(rootNode, -5).getValue());
-      // assertEquals(Integer.valueOf(15), tree.getByElement(rootNode, 15).getValue());
-      // assertEquals(Integer.valueOf(-10), tree.getByElement(rootNode, -10).getValue());
-      // assertEquals(Integer.valueOf(20), tree.getByElement(rootNode, 20).getValue());
     }
 
     // excluir
@@ -87,9 +81,19 @@ public class BinaryTreeTest {
     public void insertOnlyRight() {
       BinaryTree<Integer> tree = new BinaryTree<>();
       Node<Integer> rootNode = tree.createTree(new Integer[]{1, 2, 3, 4, 5, 6});
-      //talvez nem seja necessário inserir um elemento depois de criar a árvore
 
       assertEquals(tree.toString(rootNode), "root:1 (right:2 (right:3 (right:4 (right:5 (right:6 )))))");
+    }
+
+    @Test
+    @DisplayName("Inserção de elemento vazio")
+    public void insertEmptyElement() {
+      BinaryTree<Integer> tree = new BinaryTree<>();
+      Node<Integer> rootNode = tree.createTree(new Integer[]{});
+      
+      assertEquals(tree.toString(rootNode), "root:null ");
+      tree.insert(rootNode, 2);
+      assertEquals(tree.toString(rootNode), "root:2 ");
     }
 
     @Test
@@ -177,6 +181,18 @@ public class BinaryTreeTest {
       assertEquals(Integer.valueOf(15), tree.getFather(rootNode, 25).getValue());
       assertEquals(Integer.valueOf(25), tree.getFather(rootNode, 16).getValue());
     }
+
+    @Test
+    @DisplayName("Testa a obtenção do pai de um elemento não existente")
+    public void getFatherNull() {
+      BinaryTree<Integer> tree = new BinaryTree<>();
+      Node<Integer> rootNode = tree.createTree(new Integer[]{10, 15, 25, 16});
+
+      assertEquals(Integer.valueOf(10), tree.getFather(rootNode, 15).getValue());
+      assertEquals(Integer.valueOf(15), tree.getFather(rootNode, 25).getValue());
+      assertEquals(Integer.valueOf(25), tree.getFather(rootNode, 16).getValue());
+      assertNull(tree.getFather(rootNode, 100));
+    }
   }
 
   @Nested
@@ -203,6 +219,34 @@ public class BinaryTreeTest {
       tree.remove(rootNode, 16);
       //tree.remove(rootNode, 17);
       assertEquals(tree.toString(rootNode), "root:10 (right:15 (right:25 (left:17 )))");
+    }
+
+    @Test
+    void performASetOfRemovals() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 37, 20, 10, 30, 80, 100, 5, 180, 90 };
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()),
+          "root:37 (left:20 (left:10 (left:5 )right:30 )right:80 (right:100 (left:90 right:180 )))");
+
+      binaryTreeOps.remove(rootNode, 180);
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()),
+          "root:37 (left:20 (left:10 (left:5 )right:30 )right:80 (right:100 (left:90 )))");
+
+      binaryTreeOps.remove(rootNode, 80);
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()),
+          "root:37 (left:20 (left:10 (left:5 )right:30 )right:100 (left:90 ))");
+
+      binaryTreeOps.remove(rootNode, 10);
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()), "root:37 (left:20 (left:5 right:30 )right:100 (left:90 ))");
+
+      binaryTreeOps.remove(rootNode, 20);
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()), "root:37 (left:30 (left:5 )right:100 (left:90 ))");
+
+      binaryTreeOps.remove(rootNode, 37);
+      assertEquals(binaryTreeOps.toString(binaryTreeOps.getRoot()), "root:100 (left:90 (left:30 (left:5 )))");
     }
   }
 

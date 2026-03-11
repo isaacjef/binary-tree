@@ -1,22 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: ifgoiano.BinaryTreeTest$DepthAndCompleteness
 -------------------------------------------------------------------------------
-Tests run: 11, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.052 s <<< FAILURE! -- in ifgoiano.BinaryTreeTest$DepthAndCompleteness
-ifgoiano.BinaryTreeTest$DepthAndCompleteness.treeIsntCompletet -- Time elapsed: 0.006 s <<< FAILURE!
-org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
-	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
-	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
-	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
-	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
-	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:227)
-	at ifgoiano.BinaryTreeTest$DepthAndCompleteness.treeIsntCompletet(BinaryTreeTest.java:322)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
-
-ifgoiano.BinaryTreeTest$DepthAndCompleteness.calculateTreeNull -- Time elapsed: 0.002 s <<< FAILURE!
+Tests run: 11, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.077 s <<< FAILURE! -- in ifgoiano.BinaryTreeTest$DepthAndCompleteness
+ifgoiano.BinaryTreeTest$DepthAndCompleteness.calculateTreeNull -- Time elapsed: 0.009 s <<< FAILURE!
 org.opentest4j.AssertionFailedError: expected: <null> but was: <0>
 	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
 	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
@@ -24,7 +10,7 @@ org.opentest4j.AssertionFailedError: expected: <null> but was: <0>
 	at org.junit.jupiter.api.AssertNull.assertNull(AssertNull.java:35)
 	at org.junit.jupiter.api.AssertNull.assertNull(AssertNull.java:30)
 	at org.junit.jupiter.api.Assertions.assertNull(Assertions.java:275)
-	at ifgoiano.BinaryTreeTest$DepthAndCompleteness.calculateTreeNull(BinaryTreeTest.java:247)
+	at ifgoiano.BinaryTreeTest$DepthAndCompleteness.calculateTreeNull(BinaryTreeTest.java:250)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)

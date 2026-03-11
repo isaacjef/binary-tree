@@ -9,12 +9,13 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
    * + Para utilizá-lo em outros métodos
    */
   Node<T> p_root = new Node<>();
-  //StringBuilder sb = new StringBuilder();
 
   @Override
   public Node<T> createTree(T element) {
     this.p_root = new Node<>();
-    //if element == null)
+    if (element == null)  {
+      return null;
+    }
 
     if (p_root.getValue() == null) {
       p_root.setValue(element);
@@ -66,11 +67,8 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public void insert(Node<T> rootNode, T element) {
-    //if (element == null)
     if (rootNode.getValue() == null) {
-      //createTree(element);
       rootNode.setValue(element);
-      //Verificar método compareTo
     } else if (rootNode.getValue().compareTo(element) > 0) {
       if (rootNode.getLeft() == null) {
         Node<T> new_node = new Node<>();
@@ -92,15 +90,12 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public boolean remove(Node<T> rootNode, T nodeElement) {
-    //if (rootNode == null || nodeElement == null)
-    if (rootNode == null) {
+    if (rootNode == null || nodeElement == null) {
       return false;
     }
 
-    // Modificar -> rootNode para p_root
     Node<T> father = getFather(p_root, nodeElement);
 
-    /// Caso quando p_root = rootNode
     if (rootNode.getValue().equals(nodeElement)) {
       // Caso 1: Nó sem filhos
       if (rootNode.getLeft() == null && rootNode.getRight() == null) {
@@ -142,11 +137,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
         rootNode.setRight(null);
         return true;
       } else {
-        // Case 3: Node has two children
-
-        // Node<T> resto_esq = new Node<>(rootNode.getLeft());
-        // Node<T> successor = new Node<>(rootNode.getRight());
-
+        // Caso 4
         Node<T> resto_esq = rootNode.getLeft();
         Node<T> successor = rootNode.getRight();
         Node<T> link_node = successor.getLeft() != null ? successor.getLeft() : null;
@@ -158,10 +149,6 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
             rootNode.setValue(null);
             rootNode.setLeft(null);
             rootNode.setRight(null);
-            
-            //p_root = successor;
-            //rootNode = successor;
-            System.out.println("Abababa: " + successor.getLeft().getValue());
             
             return true;
           }
@@ -219,8 +206,6 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       }
 
       if (aux == 1) {
-        // resto_esq.setLeft(null);
-        // resto_esq.setRight(null);
         resto_esq = null;
       }
     }
@@ -230,8 +215,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public Node<T> getFather(Node<T> rootNode, T nodeElement) {
-    //if (rootNode == null || nodeElement == null)
-    if (rootNode == null) {
+    if (rootNode == null || nodeElement == null) {
       return null;
     }
 
@@ -239,24 +223,18 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       return null;
     }
 
-    Node<T> father = rootNode;
-    // vERIFICAR
-    if (rootNode.getLeft() != null && nodeElement.compareTo(rootNode.getValue()) < 0) {
-      if (rootNode.getLeft().getValue().equals(nodeElement)) {
-        return father;
-      }
-      father = getFather(rootNode.getLeft(), nodeElement);
+    if (rootNode.getLeft() != null && rootNode.getLeft().getValue().equals(nodeElement)) {
+      return rootNode;
+    }
+    if (rootNode.getRight() != null && rootNode.getRight().getValue().equals(nodeElement)) {
+      return rootNode;
     }
 
-    if (rootNode.getRight() != null && nodeElement.compareTo(rootNode.getValue()) > 0) {
-      if (rootNode.getRight().getValue().equals(nodeElement)) {
-        return father;
-      }
-      father = getFather(rootNode.getRight(), nodeElement);
+    if (nodeElement.compareTo(rootNode.getValue()) < 0) {
+      return getFather(rootNode.getLeft(), nodeElement);
+    } else {
+      return getFather(rootNode.getRight(), nodeElement);
     }
-
-    // Falta o caso, quando o nó não é raiz e não possui filhos.
-    return father;
   }
 
   @Override
@@ -267,8 +245,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public Node<T> getByElement(Node<T> rootNode, T element) {
-    //if (rootNode == null || nodeElement == null)
-    if (rootNode == null) {
+    if (rootNode == null || element == null) {
       return null;
     }
 

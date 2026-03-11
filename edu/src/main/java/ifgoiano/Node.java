@@ -9,11 +9,11 @@ public final class Node<T extends Comparable<T>> {
   public Node() {
   }
 
-  public Node(Node<T> node) {
-    this.setValue(node.getValue());
-    this.setLeft(node.getLeft());
-    this.setRight(node.getRight());
-  }
+  // public Node(Node<T> node) {
+  //   this.setValue(node.getValue());
+  //   this.setLeft(node.getLeft());
+  //   this.setRight(node.getRight());
+  // }
 
   public T getValue() {
     return value;
