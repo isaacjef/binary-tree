@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.036" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.052" tests="11" errors="0" skipped="0" failures="2">
   <properties>
     <property name="java.specification.version" value="24"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="user.country" value="BR"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk-24\bin"/>
-    <property name="sun.java.command" value="C:\Users\Pichau\AppData\Local\Temp\surefire12074822672839702418\surefirebooter-20260310145022385_3.jar C:\Users\Pichau\AppData\Local\Temp\surefire12074822672839702418 2026-03-10T14-50-22_220-jvmRun1 surefire-20260310145022385_1tmp surefire_0-20260310145022385_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Pichau\AppData\Local\Temp\surefire2226359766654938188\surefirebooter-20260311102524135_3.jar C:\Users\Pichau\AppData\Local\Temp\surefire2226359766654938188 2026-03-11T10-25-23_987-jvmRun1 surefire-20260311102524135_1tmp surefire_0-20260311102524135_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="test" value="ifgoiano.BinaryTreeTest"/>
     <property name="surefire.test.class.path" value="C:\Users\Pichau\Desktop\BinaryTreeImpl\edu\target\test-classes;C:\Users\Pichau\Desktop\BinaryTreeImpl\edu\target\classes;C:\Users\Pichau\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.0\junit-jupiter-5.10.0.jar;C:\Users\Pichau\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.0\junit-jupiter-api-5.10.0.jar;C:\Users\Pichau\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\Pichau\.m2\repository\org\junit\platform\junit-platform-commons\1.10.0\junit-platform-commons-1.10.0.jar;C:\Users\Pichau\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Pichau\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.0\junit-jupiter-params-5.10.0.jar;C:\Users\Pichau\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.0\junit-jupiter-engine-5.10.0.jar;C:\Users\Pichau\.m2\repository\org\junit\platform\junit-platform-engine\1.10.0\junit-platform-engine-1.10.0.jar;"/>
@@ -31,7 +31,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Pichau\AppData\Local\Temp\surefire12074822672839702418\surefirebooter-20260310145022385_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Pichau\AppData\Local\Temp\surefire2226359766654938188\surefirebooter-20260311102524135_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="24.0.2+12-54"/>
@@ -60,6 +60,51 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="68.0"/>
   </properties>
-  <testcase name="calculateTreeDepths" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.023"/>
+  <testcase name="treeIsCompleteTwo" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.02"/>
+  <testcase name="treeIsntComplete" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.0"/>
+  <testcase name="calculateTreeDepths" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.002"/>
+  <testcase name="treeIsntCompletet" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.006">
+    <failure message="expected: &lt;false&gt; but was: &lt;true&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <false> but was: <true>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertFalse.failNotFalse(AssertFalse.java:63)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:36)
+	at org.junit.jupiter.api.AssertFalse.assertFalse(AssertFalse.java:31)
+	at org.junit.jupiter.api.Assertions.assertFalse(Assertions.java:227)
+	at ifgoiano.BinaryTreeTest$DepthAndCompleteness.treeIsntCompletet(BinaryTreeTest.java:322)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+  </testcase>
+  <testcase name="treeIsntCompleteTwo" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.001"/>
+  <testcase name="calculateTreeNull" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.002">
+    <failure message="expected: &lt;null&gt; but was: &lt;0&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: <null> but was: <0>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNull.failNotNull(AssertNull.java:50)
+	at org.junit.jupiter.api.AssertNull.assertNull(AssertNull.java:35)
+	at org.junit.jupiter.api.AssertNull.assertNull(AssertNull.java:30)
+	at org.junit.jupiter.api.Assertions.assertNull(Assertions.java:275)
+	at ifgoiano.BinaryTreeTest$DepthAndCompleteness.calculateTreeNull(BinaryTreeTest.java:247)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:565)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1604)
+]]></failure>
+  </testcase>
   <testcase name="calculateTreeRoot" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.001"/>
+  <testcase name="checkIfTheTreeIsComplete" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.001">
+    <system-err><![CDATA[Elemento já existe na árvore: 6
+Elemento já existe na árvore: 2
+Elemento já existe na árvore: 8
+Elemento já existe na árvore: 1
+Elemento já existe na árvore: 4
+Elemento já existe na árvore: 3
+]]></system-err>
+  </testcase>
+  <testcase name="calculateTreeDepthsRight" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.0"/>
+  <testcase name="calculateTreeDepthsLeft" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.0"/>
+  <testcase name="treeIsComplete" classname="ifgoiano.BinaryTreeTest$DepthAndCompleteness" time="0.001"/>
 </testsuite>

@@ -1,7 +1,9 @@
 package ifgoiano;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -252,6 +254,72 @@ public class BinaryTreeTest {
 
       Node<Integer> rootNode = binaryTreeOps.createTree(elements);
       assertEquals(binaryTreeOps.calculateTreeDepth(rootNode), 8);
+    }
+
+    @Test
+    void checkIfTheTreeIsComplete() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 6, 2, 8, 1, 4, 3 };
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertFalse(binaryTreeOps.isComplete(rootNode));
+
+      elements = new Integer[] { 6, 2, 8, 1, 4, 3, 5 };
+
+      rootNode = binaryTreeOps.createTree(elements);
+
+      assertFalse(binaryTreeOps.isComplete(rootNode));
+    }
+
+    @Test
+    void treeIsComplete() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 5, 3, 2, 4, 7, 8, 6 };
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertTrue(binaryTreeOps.isComplete(rootNode));
+    }
+
+    @Test
+    void treeIsCompleteTwo() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 5, 3, 2, 4, 7, 8, 6, 1};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertTrue(binaryTreeOps.isComplete(rootNode));
+    }
+
+    @Test
+    void treeIsntComplete() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 5, 3, 2, 4, 7, 8, 6, 1, 0};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertFalse(binaryTreeOps.isComplete(rootNode));
+    }
+
+    @Test
+    void treeIsntCompleteTwo() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] { 5, 3, 2, 4, 7, 8, 6, 1, 0, 9};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertFalse(binaryTreeOps.isComplete(rootNode));
+    }
+
+    @Test
+    void treeIsntCompletet() {
+      IBinaryTree<Integer> binaryTreeOps = new BinaryTree<>();
+      Integer[] elements = new Integer[] {6, 2, 8, 1, 4, 7, 12, 3, 5, 10};
+
+      Node<Integer> rootNode = binaryTreeOps.createTree(elements);
+
+      assertTrue(binaryTreeOps.isComplete(rootNode));
     }
   }
 

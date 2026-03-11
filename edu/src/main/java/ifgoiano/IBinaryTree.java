@@ -21,6 +21,13 @@ public interface IBinaryTree<T extends Comparable<T>> {
   Node<T> createTree(T[] elements);
 
   /**
+   * Get the current root node of the tree
+   * 
+   * @return the root node
+   */
+  Node<T> getRoot();
+
+  /**
    * Calculates the degree of a single Node
    * 
    * @param rootNode

@@ -1,10 +1,5 @@
 package ifgoiano;
 
-import java.util.ArrayList;
-import java.util.List;
-
-//public class BinaryTree implements IBinaryTree {
-
 public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
   //T extends Object
 
@@ -18,7 +13,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public Node<T> createTree(T element) {
-    //Node<T> root = new Node<>();
+    this.p_root = new Node<>();
     //if element == null)
 
     if (p_root.getValue() == null) {
@@ -30,8 +25,6 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
   @Override
   public Node<T> createTree(T[] elements) {
-    // if element == null)
-
     for (T element : elements) {
       if (p_root == null) {
         p_root.setValue(element);
@@ -40,6 +33,11 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       }
     }
 
+    return p_root;
+  }
+
+  @Override
+  public Node<T> getRoot() {
     return p_root;
   }
 
@@ -88,7 +86,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       } else 
         insert(rootNode.getRight(), element);
     } else {
-      System.err.println("Element already exists in the tree: " + element);
+      System.err.println("Elemento já existe na árvore: " + element);
     }
   }
 
@@ -101,16 +99,6 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
 
     // Modificar -> rootNode para p_root
     Node<T> father = getFather(p_root, nodeElement);
-
-    // if (father == null && p_root.getValue().equals(nodeElement)) {
-    //   if (rootNode.getLeft() != null && rootNode.getRight() == null) {
-    //     p_root = rootNode.getLeft();
-    //   } else if (rootNode.getRight() != null) {
-    //     p_root = rootNode.getRight();
-    //   } else {
-    //     p_root.setValue(null);
-    //   }
-    // }
 
     /// Caso quando p_root = rootNode
     if (rootNode.getValue().equals(nodeElement)) {
@@ -156,15 +144,25 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
       } else {
         // Case 3: Node has two children
 
+        // Node<T> resto_esq = new Node<>(rootNode.getLeft());
+        // Node<T> successor = new Node<>(rootNode.getRight());
+
         Node<T> resto_esq = rootNode.getLeft();
         Node<T> successor = rootNode.getRight();
         Node<T> link_node = successor.getLeft() != null ? successor.getLeft() : null;
 
         if (father == null) {
           p_root = successor;
+          //se verdadeiro
           if (aux_remove(link_node, resto_esq)) {
-            rootNode.setRight(null);
+            rootNode.setValue(null);
             rootNode.setLeft(null);
+            rootNode.setRight(null);
+            
+            //p_root = successor;
+            //rootNode = successor;
+            System.out.println("Abababa: " + successor.getLeft().getValue());
+            
             return true;
           }
         } else if (father.getLeft() != null && father.getLeft().getValue().equals(rootNode.getValue())) {
@@ -173,38 +171,21 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
           father.setRight(successor);
           //father.setRight(rootNode.getRight());
         }
-
-        if (link_node == null) {
-          successor.setLeft(resto_esq);
-        }
         
-        //int aux = 0;
-
-        // while (resto_esq != null && link_node != null) {
-        //   if (link_node.getLeft() != null && resto_esq.getValue().compareTo(successor.getValue()) < 0) {
-        //     link_node = link_node.getLeft();
-        //   }
-        //   if (link_node.getRight() != null && resto_esq.getValue().compareTo(successor.getValue()) > 0) {
-        //     link_node = link_node.getRight();
-        //   }
-        //   if(link_node.getLeft() == null && resto_esq.getValue().compareTo(successor.getValue()) < 0) {
-        //     link_node.setLeft(resto_esq);
-        //     aux = 1;
-        //   }
-        //   if(link_node.getRight() == null && resto_esq.getValue().compareTo(successor.getValue()) > 0) {
-        //     link_node.setRight(resto_esq);
-        //     aux = 1;
-        //   }
-        //   System.out.println("Link node: " + link_node.getValue());
-        //   System.out.println("Resto esq: " + resto_esq.getValue());
-        //   if (aux == 1) {
-        //     resto_esq = null;
-        //   }
-        // }
-
         rootNode.setValue(null);
         rootNode.setLeft(null);
         rootNode.setRight(null);
+
+        // Se o nó sucessor (filho do nó removido) não estiver nenhum filho à
+        // esquerda, ligue o resto à esquerda do nó deletado ao sucessor. 
+        // Se não, percorra os nós filhos do nó sucessor, até que encontre o 
+        // local apropriado para o resto.
+        if (link_node == null) {
+          successor.setLeft(resto_esq);
+        } else {
+          return aux_remove(link_node, resto_esq);
+        }
+
         return true;
       }
     }
@@ -236,16 +217,15 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
         link_node.setRight(resto_esq);
         aux = 1;
       }
-      System.out.println("Link node: " + link_node.getValue());
-      System.out.println("Resto esq: " + resto_esq.getValue());
+
       if (aux == 1) {
-        resto_esq.setLeft(null);
-        resto_esq.setRight(null);
+        // resto_esq.setLeft(null);
+        // resto_esq.setRight(null);
         resto_esq = null;
       }
     }
 
-    return aux == 0;
+    return aux == 1;
   }
 
   @Override
@@ -368,7 +348,7 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
   @Override
   public String toString(Node<T> rootNode) {
     StringBuilder sb = new StringBuilder();
-
+    
     if (rootNode == null) {
       return "";
     } else if (rootNode.equals(p_root)) {
@@ -384,8 +364,6 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
     if (rootNode.getLeft() != null) {
       sb.append("(left:").append(rootNode.getLeft().getValue()).append(" ");
       sb.append(toString(rootNode.getLeft()));
-      //return sb.toString();
-      //sb.append(")");
     }
    
     if (rootNode.getRight() != null && rootNode.getLeft() == null) {
@@ -407,31 +385,29 @@ public class BinaryTree<T extends Comparable<T>> implements IBinaryTree<T> {
   public Boolean isComplete(Node<T> rootNode) {
     if (rootNode == null)
       return null;
-
+   
+    int nodeLevel = calculateNodeLevel(getRoot(), rootNode.getValue());
+    int treeDepth = calculateTreeDepth(getRoot());
     
-
-    return false;
-  }
-
-  /**
-   * Método para percorrer a árvore binária em ordem inorder, visitando todos os nós.
-   * Retorna uma lista com todos os elementos da árvore em ordem crescente.
-   * 
-   * @param rootNode o nó raiz da árvore
-   * @return lista com todos os elementos da árvore
-   */
-  public List<T> inorderTraversal(Node<T> rootNode) {
-    List<T> result = new ArrayList<>();
-    inorderHelper(rootNode, result);
-    return result;
-  }
-
-  private void inorderHelper(Node<T> node, List<T> result) {
-    if (node != null) {
-      inorderHelper(node.getLeft(), result);
-      result.add(node.getValue());
-      inorderHelper(node.getRight(), result);
+    // Verifica se o nó está no último nível e é uma folha.
+    if (nodeLevel == treeDepth && (rootNode.getLeft() == null && rootNode.getRight() == null)) {
+      return true;
     }
-  }
+
+    // Verifica se o nó está no último nível e tem um ou nenhum filho.
+    if (nodeLevel == treeDepth - 1 && (rootNode.getLeft() == null || rootNode.getRight() == null)) {
+      return true;
+    }
+
+    // Verifica se o nó está no penúltimo nível e tem ambos os filhos. *Caso especial*
+    if (nodeLevel == treeDepth - 1 && rootNode.getLeft() != null && rootNode.getRight() != null) {
+      return true;
+    }
+
+    // Percorre todos os nós da árvore recursivamente
+    Boolean leftComplete = isComplete(rootNode.getLeft());
+    Boolean rightComplete = isComplete(rootNode.getRight());
     
+    return leftComplete != null && rightComplete != null && leftComplete && rightComplete;
+  }
 }
